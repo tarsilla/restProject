@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">  	
+	<title>Home</title>
+	<!--  <link rel="icon" type="imagem/png" href="/imgs/livro.png" /> -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/paper-dashboard.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/demo.css}"/>	
+</head>
+<body class="">
+	<div class="wrapper">
+	
+		<div th:replace="fragmentos/menu-esquerdo :: menu-esquerdo"></div>
+		
+		<div class="main-panel">
+		
+				<div th:replace="fragmentos/menu-topo :: menu-topo"></div>
+				
+				<div class="content">
+	        		<div class="content-wrapper" layout:fragment="corpo"></div>
+	      		</div>
+	      		
+	      		<footer class="footer footer-black  footer-white ">
+      			</footer>
+		</div>
+	</div>
+	
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/cpf.js}"></script>
+	<script th:src="@{/js/cep.js}"></script>
+	<script th:src="@{/js/api.js}"></script>
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<!-- <script th:src="@{/js/mascaras.js}"></script>-->
+	<!--  <script th:src="@{/js/popper.min.js}"></script>-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	
+</body>
+</html>

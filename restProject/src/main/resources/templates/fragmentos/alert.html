@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<div th:fragment="alert">
+		<div class="alert alert-success alert-dismissible" role="alert" th:if="${not #strings.isEmpty(mensagem)}">
+			<i class="far fa-thumbs-up"> </i><span th:text="${mensagem}"></span>
+		</div>
+	</div>
+</body>
+</html>

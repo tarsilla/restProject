@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Lista de Professores</title>
+</head>
+<body>
+	<div id="content" layout:fragment="corpo">
+		<div class="col-md-12">
+			<div th:replace="fragmentos/alert :: alert"></div>
+			<div class="card card-user">
+				<div class="card-header">
+					<h5 class="card-title">Professores</h5>           
+				</div>
+				<div class="card-body">
+					
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Nome</th>
+									<th>Matricula</th>
+									<th>Email</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="professor : ${professores}">
+									<td th:text="${professor.nome}"></td>
+									<td th:text="${professor.matricula}"></td>
+									<td th:text="${professor.email}"></td>
+									<td>
+										<div class="btn-group pull-right">
+											<a class="btn btn-sm btn-success" th:href="@{/professor/editar/{id}(id=${professor.id})}">Editar</a>
+											<a class="delete btn btn-sm btn-danger" th:href="@{/professor/remover/{id}(id=${professor.id})}">Apagar</a>
+										</div>
+									</td>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<a class="btn btn-primary btn-round" th:href="@{/professor/cadastro}">Novo Professor</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
