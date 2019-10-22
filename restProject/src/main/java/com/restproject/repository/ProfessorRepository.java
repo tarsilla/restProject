@@ -8,11 +8,11 @@ public interface ProfessorRepository{
 
 	List<Professor> getAll();
 
-	Professor getById(long id);
+	Professor getById(Integer id);
 
 	Professor save(Professor professor);
 
-	void update(long id, Professor professor);
+	void update(Integer id, Professor professor);
 
-	void delete(long id);
+	void delete(Integer id);
 }

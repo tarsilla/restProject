@@ -42,15 +42,21 @@ public class ProfessorController {
 		return "redirect:/professores";
 	}
 	
+	@PostMapping("/delete/{id}")
+	public String delete(@PathVariable("id") Integer id){
+		pri.delete(id);		
+		return "redirect:/professores";
+	}
+	
 	@GetMapping("/editar/{id}")
-	public ModelAndView editar(@PathVariable("id") long id) {
+	public ModelAndView editar(@PathVariable("id") Integer id) {
 		ModelAndView mv = new ModelAndView("/Professores/Editar");
 		mv.addObject("professor",pri.getById(id));
 		return mv;
 	}
 	
 	@PostMapping("/update")
-	public String update(@RequestParam("id") long id, Professor professor) {
+	public String update(@RequestParam("id") Integer id, Professor professor) {
 		pri.update(id, professor);
 		return "redirect:/professores";
 	}

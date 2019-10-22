@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
-        layout:decorate="~{layout}">
+        layout:decorate="~{/layout}">
 <head>
 <meta charset="UTF-8">
 <title>Cadastro</title>
@@ -15,7 +15,7 @@
 	            <div class="card-body">
 	            	<p class="card-category">campos obrigatorios <span style="color: red">*</span></p>
 	            	<form th:object="${professor}" th:action="@{/professores}" method="POST">
-                        <input id="id" name="id" type="hidden" th:field="*{id}" th:value="*{id}">
+                      <input id="id" name="id" type="hidden" th:field="*{id}" th:value="*{id}">
                         <div class="row">                   
                         	<div class="col-md-10">
 	                 			<div class="form-group">

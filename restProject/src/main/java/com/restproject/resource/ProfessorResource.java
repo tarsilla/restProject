@@ -17,7 +17,7 @@ import com.restproject.model.Professor;
 import com.restproject.repository.ProfessorRepositoryImpli;
 
 @RestController
-@RequestMapping(value="/api ")
+@RequestMapping(value="/api")
 public class ProfessorResource {
 
 	private ProfessorRepositoryImpli pri;
@@ -33,8 +33,8 @@ public class ProfessorResource {
 	}
 	
 	//Retorna um Professor Unico
-	@GetMapping("/contatos/{id}")
-	public Professor listaProfessorUnico(@PathVariable(value="id") long id) {
+	@GetMapping("/professores/{id}")
+	public Professor listaProfessorUnico(@PathVariable(value="id") Integer id) {
 		return this.pri.getById(id);
 	}
 	
@@ -46,13 +46,13 @@ public class ProfessorResource {
 	
 	//Deleta um Professor
 	@DeleteMapping("/professores/{id}")
-	public void deletaProfessor(@PathVariable(value="id") long id) {
+	public void deletaProfessor(@PathVariable(value="id") Integer id) {
 		this.pri.delete(id);
 	}
 	
 	//Atualiza um Professor
 	@PutMapping("/professores/{id}")
-	public void atualizaProfessor(@PathVariable(value="id") long id,@RequestBody @Valid Professor professor) {
+	public void atualizaProfessor(@PathVariable(value="id") Integer id,@RequestBody @Valid Professor professor) {
 		this.pri.update(id, professor);
 	}
 	

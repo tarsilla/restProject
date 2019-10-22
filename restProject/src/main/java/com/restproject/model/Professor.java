@@ -2,12 +2,12 @@ package com.restproject.model;
 
 public class Professor{
 	
-	private long id;
+	private Integer id;
 	private String nome;
 	private String matricula;
 	private String email;
 	
-	public Professor(long id,String nome, String matricula, String email) {
+	public Professor(Integer id,String nome, String matricula, String email) {
 		this.id = id;
 		this.nome = nome;
 		this.matricula = matricula;
@@ -18,11 +18,11 @@ public class Professor{
 		// TODO Auto-generated constructor stub
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -49,5 +49,7 @@ public class Professor{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	
 
 }
