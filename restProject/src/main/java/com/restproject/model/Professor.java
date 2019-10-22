@@ -1,4 +1,4 @@
-package com.restproject.dto;
+package com.restproject.model;
 
 public class Professor{
 	
@@ -6,6 +6,17 @@ public class Professor{
 	private String nome;
 	private String matricula;
 	private String email;
+	
+	public Professor(long id,String nome, String matricula, String email) {
+		this.id = id;
+		this.nome = nome;
+		this.matricula = matricula;
+		this.email = email;
+	}
+	
+	public Professor() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public long getId() {
 		return id;

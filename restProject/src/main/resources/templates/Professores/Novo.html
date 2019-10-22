@@ -14,7 +14,7 @@
               	</div>
 	            <div class="card-body">
 	            	<p class="card-category">campos obrigatorios <span style="color: red">*</span></p>
-	            	<form th:action="@{/professor/cadastro}"  th:object="${professor}" method="POST">
+	            	<form th:object="${professor}" th:action="@{/professores}" method="POST">
                         <input id="id" name="id" type="hidden" th:field="*{id}" th:value="*{id}">
                         <div class="row">                   
                         	<div class="col-md-10">
