@@ -3,20 +3,15 @@
 <head>
 	<meta charset="UTF-8">  	
 	<title>Home</title>
-	<!--  <link rel="icon" type="imagem/png" href="/imgs/livro.png" /> -->
 	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/paper-dashboard.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/demo.css}"/>	
 </head>
 <body class="">
 	<div class="wrapper">
-	
-		<div th:replace="fragmentos/menu-esquerdo :: menu-esquerdo"></div>
 		
 		<div class="main-panel">
-		
-				<div th:replace="fragmentos/menu-topo :: menu-topo"></div>
-				
+	
 				<div class="content">
 	        		<div class="content-wrapper" layout:fragment="corpo"></div>
 	      		</div>

@@ -34,7 +34,7 @@ public class ProfessorResource {
 	
 	//Retorna um Professor Unico
 	@GetMapping("/professores/{id}")
-	public Professor listaProfessorUnico(@PathVariable(value="id") Integer id) {
+	public Professor listaProfessorUnico(@PathVariable(value="id") long id) {
 		return this.pri.getById(id);
 	}
 	
@@ -46,13 +46,13 @@ public class ProfessorResource {
 	
 	//Deleta um Professor
 	@DeleteMapping("/professores/{id}")
-	public void deletaProfessor(@PathVariable(value="id") Integer id) {
+	public void deletaProfessor(@PathVariable(value="id") long id) {
 		this.pri.delete(id);
 	}
 	
 	//Atualiza um Professor
 	@PutMapping("/professores/{id}")
-	public void atualizaProfessor(@PathVariable(value="id") Integer id,@RequestBody @Valid Professor professor) {
+	public void atualizaProfessor(@PathVariable(value="id") long id,@RequestBody @Valid Professor professor) {
 		this.pri.update(id, professor);
 	}
 	

@@ -40,7 +40,7 @@ public class ProfessorRepositoryImpli implements ProfessorRepository {
 	}
 
 	@Override
-	public Professor getById(Integer id) {
+	public Professor getById(long id) {
 		ResponseEntity<Professor> response = null;
 
 		try {
@@ -63,13 +63,13 @@ public class ProfessorRepositoryImpli implements ProfessorRepository {
 	}
 
 	@Override
-	public void update(Integer id, Professor professor) {
-		restTemplate.put(URL_API_PROFESSOR+"/"+id, professor);
+	public void update(long id, Professor professor) {
+		restTemplate.put(URL_API_PROFESSOR+"{id}/", professor, id);
 	}
 
 	@Override
-	public void delete(Integer id) {
-		restTemplate.delete(URL_API_PROFESSOR+"/"+id);
+	public void delete(long id) {
+		restTemplate.delete(URL_API_PROFESSOR+"{id}/",id);
 	}
 
 }

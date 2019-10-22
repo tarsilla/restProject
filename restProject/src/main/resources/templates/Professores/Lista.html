@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
-	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{/layout}">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" lang="pt-br"
+	layout:decorate="@{/layout}">
 <head>
 <meta charset="ISO-8859-1">
 <title>Lista de Professores</title>
@@ -35,7 +37,6 @@
 											<a class="delete btn btn-sm btn-danger" th:href="@{/professores/delete/{id}(id=${professor.id})}">Apagar</a>
 										</div>
 									</td>
-
 								</tr>
 							</tbody>
 						</table>
