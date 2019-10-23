@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.restproject.model.Professor;
-import com.restproject.repository.ProfessorRepositoryImpli;
+import com.restproject.resource.ProfessorResource;
 
 @Controller
 @RequestMapping("/professores")
 public class ProfessorController {
 
-	private ProfessorRepositoryImpli pri;
+	private ProfessorResource pri;
 	
 	public ProfessorController() {
-		this.pri = new ProfessorRepositoryImpli();
+		this.pri = new ProfessorResource();
 	}
 	
 	

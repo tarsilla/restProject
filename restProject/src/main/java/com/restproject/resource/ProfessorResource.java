@@ -1,59 +1,76 @@
 package com.restproject.resource;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import javax.validation.Valid;
-
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
 
 import com.restproject.model.Professor;
-import com.restproject.repository.ProfessorRepositoryImpli;
+import com.restproject.repository.ProfessorRepository;
 
-@RestController
-@RequestMapping(value="/api")
-public class ProfessorResource {
+public class ProfessorResource implements ProfessorRepository {
 
-	private ProfessorRepositoryImpli pri;
-	
+	@Autowired
+	private RestTemplate restTemplate;
+
+	private String URL_API_PROFESSOR = "https://projetoifhelp.herokuapp.com/api/professor/";
+
 	public ProfessorResource() {
-		this.pri = new ProfessorRepositoryImpli();
+		this.restTemplate = new RestTemplate();
 	}
-	
-	//Retorna uma lista de Professores
-	@GetMapping("/professores")
-	public List<Professor> listaProfessor(){
-		return this.pri.getAll();
+
+	@Override
+	public List<Professor> getAll() {
+		try {
+			ResponseEntity<Professor[]> response = this.restTemplate.getForEntity(URL_API_PROFESSOR, Professor[].class);
+			if (response.getStatusCodeValue() == 200) {
+				return Arrays.stream(response.getBody()).collect(Collectors.toList());
+			}
+		} catch (HttpClientErrorException ex) {
+
+			if (ex.getStatusCode() == HttpStatus.NOT_FOUND) {
+				return null;
+			}
+		}
+		return null;
 	}
-	
-	//Retorna um Professor Unico
-	@GetMapping("/professores/{id}")
-	public Professor listaProfessorUnico(@PathVariable(value="id") long id) {
-		return this.pri.getById(id);
+
+	@Override
+	public Professor getById(long id) {
+		ResponseEntity<Professor> response = null;
+
+		try {
+			response = this.restTemplate.getForEntity(URL_API_PROFESSOR + "/" + id, Professor.class);
+			if (response.getStatusCode().is2xxSuccessful()) {
+				return response.getBody();
+			}
+		} catch (HttpClientErrorException ex) {
+
+			if (ex.getStatusCode() == HttpStatus.NOT_FOUND) {
+				return null;
+			}
+		}
+		return null;
 	}
-	
-	//Criar um Professor
-	@PostMapping("/professores")
-	public Professor salvaProfessor(@RequestBody @Valid Professor professor) {
-		return this.pri.save(professor);
+
+	@Override
+	public Professor save(Professor professor) {
+		return restTemplate.postForObject(URL_API_PROFESSOR, professor, Professor.class);
 	}
-	
-	//Deleta um Professor
-	@DeleteMapping("/professores/{id}")
-	public void deletaProfessor(@PathVariable(value="id") long id) {
-		this.pri.delete(id);
+
+	@Override
+	public void update(long id, Professor professor) {
+		restTemplate.put(URL_API_PROFESSOR+"{id}/", professor, id);
 	}
-	
-	//Atualiza um Professor
-	@PutMapping("/professores/{id}")
-	public void atualizaProfessor(@PathVariable(value="id") long id,@RequestBody @Valid Professor professor) {
-		this.pri.update(id, professor);
+
+	@Override
+	public void delete(long id) {
+		restTemplate.delete(URL_API_PROFESSOR+"{id}/",id);
 	}
-	
+
 }
